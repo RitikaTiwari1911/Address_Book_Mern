@@ -1,0 +1,31 @@
+{
+  "name": "address_book_backend",
+  "version": "1.0.0",
+  "description": "This is an address book app which is being built on MERN",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RitikaTiwari1911/Address_Book_Mern.git"
+  },
+  "keywords": [
+    "Express",
+    "RestAPI",
+    "MongoDB",
+    "Mongoose",
+    "AddressBook"
+  ],
+  "author": "Ritika",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RitikaTiwari1911/Address_Book_Mern/issues"
+  },
+  "homepage": "https://github.com/RitikaTiwari1911/Address_Book_Mern#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.0"
+  }
+}
