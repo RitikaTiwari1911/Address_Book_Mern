@@ -33,6 +33,10 @@ const addBookSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    zip:{
+        type:Number,
+        required: /[0-9]*$/
+    },
     emailId:{
         type: String,
         required: true
