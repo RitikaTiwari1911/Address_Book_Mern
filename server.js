@@ -1,5 +1,6 @@
 const express = require('express');
 const app  = express();
+const dbConfig = require('./config/database.config');
 
 //middleware has access to req and res
 app.use(express.urlencoded({extended: true}))
@@ -11,6 +12,8 @@ app.get('/',(req,res) => {
 });
 
 //listen for request
-app.listen(3000,()=>{
-    console.log(`Server is listening at 3000`);
-})
+dbConfig().then(()=>{
+    app.listen(3000,()=>{
+        console.log(`Server is listening at 3000`);
+    });
+});
