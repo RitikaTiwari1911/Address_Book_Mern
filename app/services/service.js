@@ -49,6 +49,22 @@ class service{
             return callback(error, null);
         }
     }
+
+    /**
+     * @description callback for reading data by id
+     * @param {*} userId 
+     * @param {*} callback 
+     * @returns 
+     */
+    getDataById = (userId,callback)=>{
+        try{
+            model.findOne(userId,(error, data)=>{
+                return((error)?callback(error, null): callback(null, data));
+            });
+        }catch(error){
+            return callback(error, null);
+        }
+    }
 }
 
 module.exports = new service();

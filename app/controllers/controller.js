@@ -109,6 +109,34 @@ class AddBookController{
             });
         }
     }
+
+    /**
+     * @description this will fetch user data according to the id
+     * @param {*} req 
+     * @param {*} res 
+     * @returns 
+     */
+    readById = (req, res)=>{
+        try{
+            var userId = req.params.userId;
+            service.getDataById(userId,(error, data)=>{
+                return((error)? res.status(400).send({
+                    success: false,
+                    message: "Some error occured while fetching data"
+                }) :
+                res.send({
+                    success: true,
+                    message: "User Data fetched successfully",
+                    data: data
+                }));
+            });
+        }catch(error){
+            return res.send(500).send({
+                success: false,
+                message: error.message
+            });
+        }
+    }
 }
 
 

@@ -17,4 +17,7 @@ module.exports = (app) => {
 
     //get all users
     app.get('/readAll', addressBook.readAll);
+
+    //get users by id
+    app.get('/read/:userId', addressBook.readById);
 }

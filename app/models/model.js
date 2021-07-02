@@ -95,7 +95,8 @@ class model{
         }
     }
 
-    /**@description user login 
+    /**
+     * @description user login 
      * @param {*} loginInput 
      * @param {*} callback 
      * @returns 
@@ -124,6 +125,22 @@ class model{
             registerUser.find({},(error, data) =>{
                 return((error)? (callback(error, null)): (callback(null, data)));
         });
+        }catch(error){
+            return callback(error, null);
+        }
+    }
+
+    /**
+     * @description using findById()
+     * @param {*} userId 
+     * @param {*} callback 
+     * @returns 
+     */
+    findOne = (userId, callback)=>{
+        try{
+            registerUser.findById(userId,(error, data)=>{
+                return((error)? callback(error, null): callback(null, data));
+            });
         }catch(error){
             return callback(error, null);
         }
