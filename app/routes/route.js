@@ -15,4 +15,6 @@ module.exports = (app) => {
     //login for existing user
     app.post('/userLogin', addressBook.userLogin);
 
+    //get all users
+    app.get('/readAll', addressBook.readAll);
 }

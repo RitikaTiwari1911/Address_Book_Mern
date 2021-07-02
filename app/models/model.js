@@ -114,6 +114,20 @@ class model{
             return callback(error, null);
         }
     }
+
+    /**
+     * @description Using find() which is a mongoose method
+     * @param {*} callback 
+     */
+    findAll = (callback) =>{
+        try{
+            registerUser.find({},(error, data) =>{
+                return((error)? (callback(error, null)): (callback(null, data)));
+        });
+        }catch(error){
+            return callback(error, null);
+        }
+    }
 }
 
 module.exports = new model();

@@ -87,6 +87,28 @@ class AddBookController{
             });
         }
     }
+
+    readAll = (req, res)=>{
+        try{
+            service.readAllData((error, data)=>{
+                return((error)? res.status(400).send({
+                    success: false,
+                    message: "Some error occured while fetching data"
+                }) :
+                res.send({
+                    success: true,
+                    message: "Address Book data fetched successfully!",
+                    data: data
+                }));
+
+            });
+        }catch(error){
+            return res.send(500).send({
+                success: false,
+                message: error.message
+            });
+        }
+    }
 }
 
 
