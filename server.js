@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 //create express app 
 const app = express();
 
@@ -22,6 +23,6 @@ require('./app/routes/route.js')(app);
 
 
 //user can visit the url once the server is listening on port 
-app.listen(3000,() => {
-    console.log(`Server is listening at port 3000`);
+app.listen(process.env.PORT,() => {
+    console.log(`Server is listening at port ${process.env.PORT}`);
 });
