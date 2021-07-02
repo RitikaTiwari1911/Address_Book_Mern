@@ -145,6 +145,33 @@ class model{
             return callback(error, null);
         }
     }
+
+    /**
+     * @description using findByIdAndUpdate
+     * @param {*} userId 
+     * @param {*} contactDetails 
+     * @param {*} callback 
+     * @returns 
+     */
+    updateInfo = (userId, contactDetails,callback)=> {
+        try{
+            registerUser.findByIdAndUpdate(userId,{
+                firstName: contactDetails.firstName,
+                lastName: contactDetails.lastName,
+                address: contactDetails.address,
+                city: contactDetails.city,
+                state: contactDetails.state,
+                zip: contactDetails.zip,
+                phone: contactDetails.phone,
+                emailId: contactDetails.emailId,
+                password: contactDetails.password
+            },(error, data)=>{
+                return((error)?(callback(error,null)): callback(null,data));
+            });
+    }catch(error){
+        return callback(error, null);
+        }
+    }
 }
 
 module.exports = new model();

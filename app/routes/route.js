@@ -20,4 +20,7 @@ module.exports = (app) => {
 
     //get users by id
     app.get('/read/:userId', addressBook.readById);
+
+    //update user by id
+    app.put('/update/:userId', addressBook.updateData);
 }
