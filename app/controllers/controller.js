@@ -7,6 +7,7 @@
 -----------------------------------------------------------------------------------------------*/
 
 const service = require('../services/service');
+const { validation } = require('../middleware/validation')
 
 /**
  * @description Create and save new employee
@@ -18,6 +19,10 @@ const service = require('../services/service');
 class AddBookController{
     registerUser = (req,res) => {
        try{
+           const userValidation = validation.validate(req.body)
+           if(userValidation.error){
+               res.status(400).send({message:userValidation.error.details[0].message})
+           }
             const contactDetails = {
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
