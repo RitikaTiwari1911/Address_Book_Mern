@@ -13,7 +13,7 @@ dbConnect();
 //defining a simple route
 app.get('/',(req,res) => {
     res.json({
-        "message":"Welcome to the Employee Payroll Application " //this message is shown once the user visits the url
+        "message":"Welcome to the Address Book Application " //this message is shown once the user visits the url
     });
 });
 

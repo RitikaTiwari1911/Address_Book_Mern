@@ -1,16 +1,16 @@
 /**
- * @module       Models
+ * @module       Model
  * @file         models.js
- * @description  AddBookSchema holds the database Schema 
+ * @description  addBookSchema holds the database Schema 
  * @author       Ritika <spk2ritika1911@gmail.com>
- * @since        01/07/2021  
+ * @since        02/07/2021  
 -----------------------------------------------------------------------------------------------*/
 //connecting to the mongoDB through mongoose
 const mongoose = require('mongoose');
 
-//schema for addressbook
+//schema for the manner in which the data will be stored in the database
 const addBookSchema = mongoose.Schema({
-    firstName:{
+    firstName: { 
         type: String,
         required: true,
         validate: /^[a-zA-Z ]{3,30}$/
@@ -20,39 +20,70 @@ const addBookSchema = mongoose.Schema({
         required: true,
         validate: /^[a-zA-Z ]{3,30}$/
     },
-    addresss: {
+    address:{
         type: String,
         required: true,
-        validate: /[a-zA-Z0-9\s\,\''\-]*$/
     },
     city:{
         type: String,
-        required: true
+        required: true,
     },
     state:{
         type: String,
-        required: true
+        required: true,
     },
     zip:{
-        type:Number,
-        required: /[0-9]*$/
+        type: Number,
+        required: true,
+        validate: /^[0-9]{6}$/
     },
-    emailId:{
+    phone:{
+        type: Number,
+        require: true,
+        validate: /^[0-9]{10}$/
+    },
+    emailId: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
         type: String,
         required: true
     },
-    phoneNo:{
-        type:Number,
-        required: true,
-        validate: /^\d{10}$/
-    },
 },{
-    //Applying time stamp
+    //Applying time stamp for the data
     timestamps: true
 });
 
-//exporting model module
-module.exports = mongoose.model('addressBook',addBookSchema);
+const registerUser = mongoose.model('registerUser',addBookSchema)
 
+class model{
+    /**
+     * @description registering address in the database
+     * @param {*} contactDetails 
+     * @param {*} callback 
+     */
+    create = (contactDetails, callback) =>{
+        try{
 
-    
+            const addBookSchema = new registerUser({
+
+                firstName: contactDetails.firstName,
+                lastName: contactDetails.lastName,
+                address: contactDetails.address,
+                city: contactDetails.city,
+                state: contactDetails.state,
+                zip: contactDetails.zip,
+                phone: contactDetails.phone,
+                emailId: contactDetails.emailId,
+                password: contactDetails.password
+            });
+            addBookSchema.save(callback)
+        }catch(error){
+            return callback(error,null);
+        }
+    }
+}
+
+module.exports = new model();
