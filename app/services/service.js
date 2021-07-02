@@ -8,10 +8,32 @@
 const model = require('../models/model');
 
 class service{
+    /**
+     * @description registration of user
+     * @param {*} contactDetails 
+     * @param {*} callback 
+     * @returns 
+     */
     createAddress = (contactDetails, callback) => {
         try{
             model.create(contactDetails, (error, data) => {
                 return error? callback(error, null): callback(null, data)    
+            })
+        }catch(error){
+            return callback(error,null);
+        }
+    }
+
+    /**
+     * @description callback for login
+     * @param {*} loginInput 
+     * @param {*} callback 
+     * @returns 
+     */
+    login = (loginInput, callback)=>{
+        try{
+            model.login(loginInput,(error, data)=>{
+                return error? callback(error, null): callback(null, data)
             })
         }catch(error){
             return callback(error,null);

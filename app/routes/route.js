@@ -12,5 +12,7 @@ module.exports = (app) => {
     //registering a new user
     app.post('/registerUser', addressBook.registerUser);
 
-    
+    //login for existing user
+    app.post('/userLogin', addressBook.userLogin);
+
 }
