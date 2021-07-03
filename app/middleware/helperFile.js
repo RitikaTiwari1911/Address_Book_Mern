@@ -12,7 +12,6 @@ class Helper{
         const token = jwt.sign(loginInput, process.env.SECRET_KEY,{
             expiresIn: '3000s'
         });
-        console.log("token",token);
         return token;
     }
 
@@ -37,7 +36,7 @@ class Helper{
     checkToken(req, res, next){
         let token = req.get('token');
         return(token)?
-        jwt.verify(token, SECRET_KEY, error =>{
+        jwt.verify(token, process.env.SECRET_KEY, error =>{
             return (error) ? res.status(400).send({message: "Invalid Token"}):next();
         }) : 
         res.status(401).send({message: "Missing token! Unauthorized User!"})

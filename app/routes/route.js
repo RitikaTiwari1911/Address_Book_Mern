@@ -8,6 +8,7 @@
 
 module.exports = (app) => {
     const addressBook = require('../controllers/controller.js');
+    const helper =require('../middleware/helperFile')
 
     //registering a new user
     app.post('/registerUser', addressBook.registerUser);
@@ -16,14 +17,14 @@ module.exports = (app) => {
     app.post('/userLogin', addressBook.userLogin);
 
     //get all users
-    app.get('/readAll', addressBook.readAll);
+    app.get('/readAll', helper.checkToken ,addressBook.readAll);
 
     //get users by id
-    app.get('/read/:userId', addressBook.readById);
+    app.get('/read/:userId', helper.checkToken, addressBook.readById);
 
     //update user by id
-    app.put('/update/:userId', addressBook.updateData);
+    app.put('/update/:userId', helper.checkToken, addressBook.updateData);
 
     //delete user by id
-    app.delete('/delete/:userId', addressBook.deleteData);
+    app.delete('/delete/:userId', helper.checkToken, addressBook.deleteData);
 }
