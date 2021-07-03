@@ -68,15 +68,16 @@ class AddBookController{
                 emailId: req.body.emailId,
                 password: req.body.password
             }
-            service.login(loginInput,(error, data)=>{
+            service.login(loginInput,(error, token)=>{
                 return((error)? res.status(400).send({
                     success: false,
                     message: "Invalid credential"
+                    
                 }) :
                 res.send({
                     success: true,
                     message: "Login successful!",
-                    data: data
+                    data: token
                 }));                
             });
         }catch(error){

@@ -6,6 +6,7 @@
  * @since        02/07/2021  
 -----------------------------------------------------------------------------------------------*/
 const model = require('../models/model');
+const helper = require('../middleware/helperFile');
 
 class service{
     /**
@@ -33,7 +34,13 @@ class service{
     login = (loginInput, callback)=>{
         try{
             model.login(loginInput,(error, data)=>{
-                return error? callback(error, null): callback(null, data)
+                if(helper.checkByBcrypt(loginInput.password, data.password)){
+                    const token = helper.generateToken(loginInput)
+                    return(token)?callback(null,token):callback("Incorrect password! Please provide correct password!", null);
+                }
+                else if(error){
+                    callback(error, null);
+                }
             })
         }catch(error){
             return callback(error,null);
