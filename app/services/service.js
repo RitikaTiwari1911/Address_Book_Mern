@@ -82,6 +82,16 @@ class service{
             return callback(error, null);
         }
     }
+
+    deleteById = (userId, callback)=>{
+        try{
+            model.delete(userId, (error, data)=>{
+                return((error)?callback(error, null): callback(null, data));
+            });
+        }catch(error){
+            return callback(error,null);
+        }
+    }
 }
 
 module.exports = new service();

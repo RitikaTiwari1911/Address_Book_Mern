@@ -180,6 +180,28 @@ class AddBookController{
             });
         }
     }
+
+    deleteData = (req ,res)=>{
+        try{
+            var userId = req.params.userId
+            service.deleteById(userId,(error, data)=>{
+                return((error)? res.status(400).send({
+                    success: false,
+                    message: "Some error occured while deleting the data",
+                }) :
+                res.send({
+                    success: true,
+                    messsage: "deleted the user successfully!!",
+                    data: data
+                }));
+            });
+        }catch(error){
+            return res.status(500).send({
+                success: false,
+                message: error.message
+            });
+        }
+    }
 }
 
 

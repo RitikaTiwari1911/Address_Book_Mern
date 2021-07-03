@@ -23,4 +23,7 @@ module.exports = (app) => {
 
     //update user by id
     app.put('/update/:userId', addressBook.updateData);
+
+    //delete user by id
+    app.delete('/delete/:userId', addressBook.deleteData);
 }
