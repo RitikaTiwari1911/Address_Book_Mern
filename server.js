@@ -2,9 +2,15 @@ const express = require('express');
 require('dotenv').config();
 //create express app 
 const app = express();
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./app/swagger/swagger.json')
 const logger = require('../Address_Book_Backend/config/logger')
+
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //configuring the database
 const dbConnect = require('./config/database.config');
