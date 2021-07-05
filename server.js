@@ -32,3 +32,5 @@ require('./app/routes/route.js')(app);
 app.listen(process.env.PORT,() => {
     logger.log("info","Server is listening at port ${process.env.PORT}");
 });
+
+module.exports = app;
